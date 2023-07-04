@@ -10,6 +10,10 @@
           $do = isset($_GET['do']) ? $_GET['do'] : 'manage';
     
           if($do=='manage'){
+            $stmt = $con->prepare("SELECT * FROM users ");
+            $stmt->execute(array());
+            $rows = $stmt->fetchall();
+            
             ?>
         <h1 class='text-center'>Manage User</h1>
           <div class= 'loginedit'>
@@ -23,50 +27,25 @@
                   <td>Register date</td>
                   <td>control</td>
                 </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <a href="#" class="btn btn-success">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <a href="#" class="btn btn-success">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <a href="#" class="btn btn-success">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <a href="#" class="btn btn-success">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
-                  </td>
-                </tr>
+                <?php
+                
+                   foreach($rows as $row) {
+                    echo '<tr>';
+                    echo '<td>'.$row['userid'].'</td>';
+                    echo '<td>'.$row['username'].'</td>';
+                    echo '<td>'.$row['email'].'</td>';
+                    echo '<td>'.$row['fullname'].'</td>';
+                    echo '<td>'.''.'</td>';
+                    echo '<td>';
+                    echo '<a href="#" class="btn btn-success">Edit</a>';
+                    echo '<a href="#" class="btn btn-danger">Delete</a>';
+                    echo '</td>';
+                    echo '</tr>';
+                  } 
+                  
+                ?>
+                  
+
               </table>
             </div>
             <a href="member.php?do=add" class='btn btn-primary'><i class="fa fa-plus" ></i>Add new member</a>
