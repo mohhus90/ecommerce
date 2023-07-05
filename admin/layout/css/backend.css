@@ -1,23 +1,24 @@
 .loginedit{
-    margin: 300 auto;
+    margin: 0px 200px;
 }
-.btn{
-    margin: 300 auto;
+.loginedit .btn{
+    margin: 0px 200px;
+    width: 300px;
 }
 .login{
-    margin: 300 auto;
+    margin: 300px auto;
 }
 .form-control, .form-group{
     position: relative;
 }
 .showpass{
     position: absolute;
-    right: 0px;
-    top: 0px;
+    right: -10px;
+    top: 10px;
 }
 .asterisk{
     position: absolute;
-    right: 0px;
+    right: 20px;
     top: 5px;
     color: red;
     font-size: 30px;

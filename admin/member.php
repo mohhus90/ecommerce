@@ -16,7 +16,7 @@
             
             ?>
         <h1 class='text-center'>Manage User</h1>
-          <div class= 'loginedit'>
+          <div class= 'container'>
             <div class='table-responsive'>
               <table class= 'table table-bordered main-table text-center'>
                 <tr>
@@ -38,6 +38,7 @@
                     echo '<td>'.''.'</td>';
                     echo '<td>';
                     echo '<a href="member.php?do=edit&userid='. $row['userid'].'" class="btn btn-success">Edit</a>';
+                    echo ' ';
                     echo '<a href="member.php?do=delete&userid='. $row['userid'].'" class="btn btn-danger confirm">Delete</a>';
                     echo '</td>';
                     echo '</tr>';

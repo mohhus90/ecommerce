@@ -1,7 +1,7 @@
 <?php
     $dsn= 'mysql:host=localhost;dbname=shop';
     $user= 'root';
-    $pass = 'Admin@4218';
+    $pass = '';
     $option = array(
         PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
     );
