@@ -7,3 +7,18 @@
 .login{
     margin: 300 auto;
 }
+.form-control, .form-group{
+    position: relative;
+}
+.showpass{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+}
+.asterisk{
+    position: absolute;
+    right: 0px;
+    top: 5px;
+    color: red;
+    font-size: 30px;
+}

@@ -37,8 +37,8 @@
                     echo '<td>'.$row['fullname'].'</td>';
                     echo '<td>'.''.'</td>';
                     echo '<td>';
-                    echo '<a href="#" class="btn btn-success">Edit</a>';
-                    echo '<a href="#" class="btn btn-danger">Delete</a>';
+                    echo '<a href="member.php?do=edit&userid='. $row['userid'].'" class="btn btn-success">Edit</a>';
+                    echo '<a href="member.php?do=delete&userid='. $row['userid'].'" class="btn btn-danger confirm">Delete</a>';
                     echo '</td>';
                     echo '</tr>';
                   } 
@@ -66,7 +66,8 @@
               <div  class='form-group'>
                   <label class= 'col-sm-2 control-label'>password</label>
                   <div class='col-sm-6'>
-                    <input class='form-control' type='password' name='pass' autocomplete='new-password' required='required'/>
+                    <input class='form-control passowrd' type='password' name='pass' autocomplete='new-password' required='required'/>
+                    <i class='showpass fa fa-eye fa-1x'></i>
                   </div>
               </div>
               <div  class='form-group'>
@@ -101,12 +102,12 @@
                   if(empty($user)){
                     $erorrarray[]=  "you can't set username empty";
                   }
-                  if(empty($full)){
-                    $erorrarray[]=  "you can't set fullname empty";
-                  }
-                  if(empty($email)){
-                    $erorrarray[]=  "you can't set Email empty";
-                  }
+                  // if(empty($full)){
+                  //   $erorrarray[]=  "you can't set fullname empty";
+                  // }
+                  // if(empty($email)){
+                  //   $erorrarray[]=  "you can't set Email empty";
+                  // }
                   
                   foreach($erorrarray as $erorr){
                     echo '<div class="alert alert-danger text-center">'. $erorr .'</div>';
@@ -221,7 +222,13 @@
                 echo 'sorry';
               }
 
-            }
+            }elseif($do=='delete'){
+              $userid=isset($_GET['userid']) && is_numeric($_GET['userid'])? intval($_GET['userid']):0;
+                  $stmt = $con->prepare("DELETE FROM users WHERE userid = ? LIMIT 1");
+                  $stmt->execute(array($userid));
+                  $count= $stmt->rowCount();
+                  echo $count .' '. 'Record Succesfully deleted';
+            }     
 
           include $tmpl."footer.php";
       }
