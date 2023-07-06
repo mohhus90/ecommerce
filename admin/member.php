@@ -86,7 +86,7 @@
               </div>
               <div  class='form-group'>
                   <div class='col-sm-offeset-2 col-sm-6'>
-                    <input class='btn btn-primary col-sm-6' type='submit' value='add' />
+                    <input class='btn btn-primary btn-block' type='submit' value='add' />
                   </div>
               </div>
             </form>
@@ -116,10 +116,19 @@
                   }
                 
                   if(empty($erorrarray)){
-                    $stmt = $con->prepare("INSERT INTO users (username,fullname,email,password) VALUES(?,?,?,?)");
-                    $stmt->execute(array($user,$full,$email,$hashpass));
-                    $count= $stmt->rowCount();
-                    echo $count .' '. 'Record Succesfully Inserted';
+                        $stmt = $con->prepare("SELECT * FROM users WHERE username = ? LIMIT 1");
+                        $stmt->execute(array($user));
+                        $row = $stmt->fetch();
+                        $count= $stmt->rowCount();
+                  
+                        if($count >0){ 
+                          echo '<div class="alert alert-danger text-center">'. 'This user is already exist' .'</div>';
+                        }else{
+                              $stmt = $con->prepare("INSERT INTO users (username,fullname,email,password) VALUES(?,?,?,?)");
+                              $stmt->execute(array($user,$full,$email,$hashpass));
+                              $count= $stmt->rowCount();
+                              echo $count .' '. 'Record Succesfully Inserted';
+                        }
                   }
                   
               
@@ -166,8 +175,8 @@
                                   </div>
                               </div>
                               <div  class='form-group'>
-                                  <div class='col-sm-offeset-2 col-sm-6'>
-                                    <input class='btn btn-primary col-sm-6' type='submit' value='save' />
+                                  <div class='col-sm-offeset-1 col-sm-6'>
+                                    <input class='btn btn-primary btn-block' type='submit' value='save' />
                                   </div>
                               </div>
                             </form>
@@ -225,6 +234,7 @@
               }
 
             }elseif($do=='delete'){
+              echo "<h1 class='text-center'>Delete User</h1>";
               $userid=isset($_GET['userid']) && is_numeric($_GET['userid'])? intval($_GET['userid']):0;
                   $stmt = $con->prepare("DELETE FROM users WHERE userid = ? LIMIT 1");
                   $stmt->execute(array($userid));
