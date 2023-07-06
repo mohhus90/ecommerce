@@ -1,6 +1,6 @@
 <?php
       session_start();
-      $title = 'Edit User';
+      $title = 'Manage User';
       
       
     if(isset($_SESSION['username'])){
@@ -49,7 +49,7 @@
 
               </table>
             </div>
-            <a href="member.php?do=add" class='btn btn-primary'><i class="fa fa-plus" ></i>Add new member</a>
+            <a href="member.php?do=add" class='btn btn-primary'><i class="fa fa-plus" ></i> Add new member</a>
           </div>
         <?php
         }elseif($do=='add'){?>
@@ -67,8 +67,9 @@
               <div  class='form-group'>
                   <label class= 'col-sm-2 control-label'>password</label>
                   <div class='col-sm-6'>
-                    <input class='form-control passowrd' type='password' name='pass' autocomplete='new-password' required='required'/>
-                    <i class='showpass fa fa-eye fa-1x'></i>
+                    <input class='form-control passowrd' id="pass_log_id" type='password' name='pass' autocomplete='new-password' required='required'/>
+                    <!-- <i class='showpass fa fa-eye fa-1x'></i> -->
+                    <i class="showpass togglePassword far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
                   </div>
               </div>
               <div  class='form-group'>
