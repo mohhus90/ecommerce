@@ -3,11 +3,11 @@
 }
 .loginedit .btn{
     margin: 0px 200px;
-    width: 300px;
+    width: 100%;
 }
-.login{
-    margin: 300px auto;
-}
+/* .login{
+    margin: 100px auto;
+} */
 .form-control, .form-group{
     position: relative;
 }
@@ -22,4 +22,7 @@
     top: 5px;
     color: red;
     font-size: 30px;
+}
+.go{
+    color: rgb(151, 64, 64);
 }

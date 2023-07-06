@@ -39,8 +39,8 @@
         
     }
 ?>
-    <form  class='login' style="color:BLUE" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-        <div class= 'text-center'>Go Partner's</div>
+    <form  class='col-lg-4 col-lg-offset-4 ' action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+        <div class= 'text-center' style="color:gray; font-size: 30px">Go Partner's</div>
         <input class='form-control' type='username' name='user' placeholder='username' autocomplete='off' />
         <input class='form-control' type='password' name='pass' placeholder='password' autocomplete='newpassword' />
         <input class='btn btn-primary btn-block' type='submit'  name='login' />
