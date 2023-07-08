@@ -23,4 +23,29 @@
     color: red;
     font-size: 30px;
 }
+.main-table tr:first-child{
+    background-color: black;
+    color: white;
+}
+.main-table{
+    box-shadow: 0 3px 10px #969292;
+    background-color: rgb(230, 224, 224);
+}
+table.table-borderd{
+    border: 1px solid blue;
+    margin-top: 20px;
+}
 
+/*
+dashboard
+*/
+.dash .dash-stat {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 20px;
+    font-size: 15px;
+}
+.dash .dash-stat span{
+    display: block;
+    font-size: 50px;
+}

@@ -6,9 +6,11 @@
     <title><?php echo getTitle() ?></title>
     <link rel="stylesheet" href="layout/css/backend.css">
     <link rel="stylesheet" href="layout/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="layout/css/bootstrap.css"> -->
     <link href="layout/fontawesome-free-6.4.0-web/css/fontawesome.css" rel="stylesheet">
   <link href="layout/fontawesome-free-6.4.0-web/css/brands.css" rel="stylesheet">
   <link href="layout/fontawesome-free-6.4.0-web/css/solid.css" rel="stylesheet">
+  
   
     
 </head>

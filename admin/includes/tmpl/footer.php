@@ -7,6 +7,7 @@
         <script src="layout/js/backend.js"></script>
         <!-- <script src="layout/js/bootstrap.js"></script> -->
         <script src="layout/js/bootstrap.bundle.min.js"></script>
+        
         <script>
             const togglePassword = document.querySelector('.togglePassword');
             const password = document.querySelector('#pass_log_id');
@@ -16,8 +17,16 @@
                 const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
                 password.setAttribute('type', type);
                 // toggle the eye slash icon
-                this.classList.toggle('fa-eye-slash');
-                var passField = $('.password');
+                // this.classList.toggle('fa-eye-slash');
+                if ( this.classList.contains('tog') ){
+                    this.className +=' fa-solid fa-eye-slash';
+                    this.classList.remove('fa-eye');
+                    this.classList.remove('tog');
+                }
+                else if(!this.classList.contains('tog')){
+                    this.classList.remove('fa-eye-slash');
+                    this.className +=' tog fa-eye';
+                }
             });
         </script>
     </body>
