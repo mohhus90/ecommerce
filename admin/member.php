@@ -19,7 +19,7 @@
         <h1 class='text-center'>Manage User</h1>
           <div class= 'container'>
             <div class='table-responsive'>
-              <table class= 'table table-bordered table-hover thead-dark main-table text-center' >
+              <table class= 'table table-bordered thead-dark main-table text-center' >
               
                 <tr style="border-color:blue;" >
                   <td>#ID</td>
@@ -33,7 +33,7 @@
                 <?php
                 
                    foreach($rows as $row) {
-<<<<<<< HEAD
+
 
                     echo '<tr style="border-color:rgb(124, 114, 114);" >';
                     echo '<td style="border-color:rgb(124, 114, 114);">'.$row['userid'].'</td>';
@@ -129,14 +129,11 @@
                         // $row = $stmt->fetch();
                         // $count= $stmt->rowCount();
                   
-<<<<<<< HEAD
-                        if($cheked >0){ 
-                          echo '<div class="alert alert-danger text-center">'. 'This user is already exist' .'</div>';
-=======
+
                         if($count >0){ 
                           $errmsg = '<div class="alert alert-danger text-center d-flex justify-content-center">'. 'This user is already exist' .'</div>';
                           redirect($errmsg,'back');
->>>>>>> b287d3d3b10b787d241aaa20de791c87ea9e35aa
+
                         }else{
                               $stmt = $con->prepare("INSERT INTO users (username,fullname,email,password) VALUES(?,?,?,?)");
                               $stmt->execute(array($user,$full,$email,$hashpass));
