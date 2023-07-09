@@ -10,6 +10,7 @@
           $do = isset($_GET['do']) ? $_GET['do'] : 'manage';
     
           if($do=='manage'){
+           
             $stmt = $con->prepare("SELECT * FROM users ");
             $stmt->execute(array());
             $rows = $stmt->fetchall();
@@ -37,9 +38,9 @@
                     echo '<td>'.$row['fullname'].'</td>';
                     echo '<td>'.''.'</td>';
                     echo '<td>';
-                    echo '<a href="member.php?do=edit&userid='. $row['userid'].'" class="btn btn-success">Edit</a>';
+                    echo '<a href="member.php?do=edit&userid='. $row['userid'].'" class="btn btn-success"><i class="fa fa-edit"></i> Edit</a>';
                     echo ' ';
-                    echo '<a href="member.php?do=delete&userid='. $row['userid'].'" class="btn btn-danger confirm">Delete</a>';
+                    echo '<a href="member.php?do=delete&userid='. $row['userid'].'" class="btn btn-danger confirm"><i class="fa fa-close"></i> Delete</a>';
                     echo '</td>';
                     echo '</tr>';
                   } 
@@ -49,7 +50,7 @@
 
               </table>
             </div>
-            <a href="member.php?do=add" class='btn btn-primary'><i class="fa fa-plus" ></i> Add new member</a>
+            <a href="member.php?do=add" class='btn btn-primary'><i class="fa fa-plus" ></i> New Member</a>
           </div>
         <?php
         }elseif($do=='add'){?>
@@ -60,13 +61,13 @@
             
               <div  class='form-group'>
                   <label class= 'col-sm-2 control-label'>username</label>
-                  <div class='col-sm-6'>
+                  <div class='col-sm-8'>
                     <input class='form-control' type='text' name='user' required='required' autocomplete='off' />
                   </div>
               </div>
               <div  class='form-group'>
                   <label class= 'col-sm-2 control-label'>password</label>
-                  <div class='col-sm-6'>
+                  <div class='col-sm-8'>
                     <input class='form-control passowrd' id="pass_log_id" type='password' name='pass' autocomplete='new-password' required='required'/>
                     <!-- <i class='showpass fa fa-eye fa-1x'></i> -->
                     <i class="showpass togglePassword far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
@@ -74,18 +75,19 @@
               </div>
               <div  class='form-group'>
                   <label class= 'col-sm-2 control-label'>Email</label>
-                  <div class='col-sm-6'>
+                  <div class='col-sm-8'>
                     <input class='form-control' type='email' name='email' />
                   </div>
               </div>
               <div  class='form-group'>
                   <label class= 'col-sm-2 control-label'>Fullname</label>
-                  <div class='col-sm-6'>
+                  <div class='col-sm-8'>
                     <input class='form-control' type='text' name='full' />
                   </div>
               </div>
               <div  class='form-group'>
-                  <div class='col-sm-offeset-2 col-sm-6'>
+                   <label class= 'col-sm-2 control-label'></label>
+                   <div class='col-sm-8'>
                     <input class='btn btn-primary btn-block' type='submit' value='add' />
                   </div>
               </div>
@@ -116,18 +118,19 @@
                   }
                 
                   if(empty($erorrarray)){
-                        $stmt = $con->prepare("SELECT * FROM users WHERE username = ? LIMIT 1");
-                        $stmt->execute(array($user));
-                        $row = $stmt->fetch();
-                        $count= $stmt->rowCount();
+                    $cheked= checkitem('username','users',$user);
+                        // $stmt = $con->prepare("SELECT * FROM users WHERE username = ? LIMIT 1");
+                        // $stmt->execute(array($user));
+                        // $row = $stmt->fetch();
+                        // $count= $stmt->rowCount();
                   
-                        if($count >0){ 
+                        if($cheked >0){ 
                           echo '<div class="alert alert-danger text-center">'. 'This user is already exist' .'</div>';
                         }else{
                               $stmt = $con->prepare("INSERT INTO users (username,fullname,email,password) VALUES(?,?,?,?)");
                               $stmt->execute(array($user,$full,$email,$hashpass));
                               $count= $stmt->rowCount();
-                              echo $count .' '. 'Record Succesfully Inserted';
+                              redirect($count .' '. 'Record Succesfully Inserted' ,3);
                         }
                   }
                   
@@ -152,30 +155,31 @@
                             <input  type='hidden' value="<?php echo $row['userid']?>" name='userid' />
                               <div  class='form-group'>
                                   <label class= 'col-sm-2 control-label'>username</label>
-                                  <div class='col-sm-6'>
+                                  <div class='col-sm-8'>
                                     <input class='form-control' type='text' value="<?php echo $row['username']?>" name='user' required='required' autocomplete='off' />
                                   </div>
                               </div>
                               <div  class='form-group'>
                                   <label class= 'col-sm-2 control-label'>password</label>
-                                  <div class='col-sm-6'>
+                                  <div class='col-sm-8'>
                                     <input class='form-control' type='password' name='pass' autocomplete='new-password' />
                                   </div>
                               </div>
                               <div  class='form-group'>
                                   <label class= 'col-sm-2 control-label'>Email</label>
-                                  <div class='col-sm-6'>
+                                  <div class='col-sm-8'>
                                     <input class='form-control' type='email' value="<?php echo $row['email']?>" name='email' />
                                   </div>
                               </div>
                               <div  class='form-group'>
                                   <label class= 'col-sm-2 control-label'>Fullname</label>
-                                  <div class='col-sm-6'>
+                                  <div class='col-sm-8'>
                                     <input class='form-control' type='text' value="<?php echo $row['fullname']?>" name='full' />
                                   </div>
                               </div>
                               <div  class='form-group'>
-                                  <div class='col-sm-offeset-1 col-sm-6'>
+                              <label class= 'col-sm-2 control-label'></label>
+                                  <div class='col-sm-8'>
                                     <input class='btn btn-primary btn-block' type='submit' value='save' />
                                   </div>
                               </div>
@@ -218,7 +222,8 @@
                     }
                     
                     foreach($erorrarray as $erorr){
-                      echo '<div class="alert alert-danger text-center">'. $erorr .'</div>';
+                    
+                      redirect($erorr);
                     }
                   
                     if(empty($erorrarray)){
@@ -226,11 +231,12 @@
                       $stmt->execute(array($user,$full,$email,$hashedpass,$id));
                       $count= $stmt->rowCount();
                       echo $count .' '. 'Record Succesfully Updated';
+                      redirect($count .' '. 'Record Succesfully Updated' ,6);
                     }
                     
                 
               }else{
-                echo 'sorry';
+                redirect('you canot browse this page directly' ,3);
               }
 
             }elseif($do=='delete'){
@@ -239,14 +245,14 @@
                   $stmt = $con->prepare("DELETE FROM users WHERE userid = ? LIMIT 1");
                   $stmt->execute(array($userid));
                   $count= $stmt->rowCount();
-                  echo $count .' '. 'Record Succesfully deleted';
+                  redirect($count .' '. 'Record Succesfully Deleted' ,3);
             }     
 
           include $tmpl."footer.php";
       }
       else{
-        header('location: index.php');
-        exit();
+        redirect('Sorry you not have authorized' , 3);
+        
         
       }
       
