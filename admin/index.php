@@ -23,7 +23,7 @@
         $username = $_POST['user'];
         $password = $_POST['pass'];
         $hashpass = SHA1('$password');
-
+        
         $stmt = $con->prepare("SELECT userid, username, password FROM users WHERE username = ? AND password= ? LIMIT 1");
         $stmt->execute(array($username, $hashpass));
         $row = $stmt->fetch();

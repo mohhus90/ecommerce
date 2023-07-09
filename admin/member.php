@@ -19,8 +19,9 @@
         <h1 class='text-center'>Manage User</h1>
           <div class= 'container'>
             <div class='table-responsive'>
-              <table class= 'table table-bordered main-table text-center'>
-                <tr>
+              <table class= 'table table-bordered table-hover thead-dark main-table text-center' >
+              
+                <tr style="border-color:blue;" >
                   <td>#ID</td>
                   <td>Username</td>
                   <td>Email</td>
@@ -28,19 +29,23 @@
                   <td>Register date</td>
                   <td>control</td>
                 </tr>
+              
                 <?php
                 
                    foreach($rows as $row) {
-                    echo '<tr>';
-                    echo '<td>'.$row['userid'].'</td>';
-                    echo '<td>'.$row['username'].'</td>';
-                    echo '<td>'.$row['email'].'</td>';
-                    echo '<td>'.$row['fullname'].'</td>';
-                    echo '<td>'.''.'</td>';
-                    echo '<td>';
-                    echo '<a href="member.php?do=edit&userid='. $row['userid'].'" class="btn btn-success"><i class="fa fa-edit"></i> Edit</a>';
+<<<<<<< HEAD
+
+                    echo '<tr style="border-color:rgb(124, 114, 114);" >';
+                    echo '<td style="border-color:rgb(124, 114, 114);">'.$row['userid'].'</td>';
+                    echo '<td style="border-color:rgb(124, 114, 114);">'.$row['username'].'</td>';
+                    echo '<td style="border-color:rgb(124, 114, 114);">'.$row['email'].'</td>';
+                    echo '<td style="border-color:rgb(124, 114, 114);">'.$row['fullname'].'</td>';
+                    echo '<td style="border-color:rgb(124, 114, 114);">'.''.'</td>';
+                    echo '<td style="border-color:rgb(124, 114, 114);">';
+                    echo '<a href="member.php?do=edit&userid='. $row['userid'].'" class="btn btn-success"><i class="fa fa-edit"></i>Edit</a>';
                     echo ' ';
-                    echo '<a href="member.php?do=delete&userid='. $row['userid'].'" class="btn btn-danger confirm"><i class="fa fa-close"></i> Delete</a>';
+                    echo '<a href="member.php?do=delete&userid='. $row['userid'].'" class="btn btn-danger confirm"><i class="fa fa-close"></i>Delete</a>';
+
                     echo '</td>';
                     echo '</tr>';
                   } 
@@ -70,7 +75,7 @@
                   <div class='col-sm-8'>
                     <input class='form-control passowrd' id="pass_log_id" type='password' name='pass' autocomplete='new-password' required='required'/>
                     <!-- <i class='showpass fa fa-eye fa-1x'></i> -->
-                    <i class="showpass togglePassword far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+                    <i class="showpass togglePassword tog far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
                   </div>
               </div>
               <div  class='form-group'>
@@ -124,8 +129,14 @@
                         // $row = $stmt->fetch();
                         // $count= $stmt->rowCount();
                   
+<<<<<<< HEAD
                         if($cheked >0){ 
                           echo '<div class="alert alert-danger text-center">'. 'This user is already exist' .'</div>';
+=======
+                        if($count >0){ 
+                          $errmsg = '<div class="alert alert-danger text-center d-flex justify-content-center">'. 'This user is already exist' .'</div>';
+                          redirect($errmsg,'back');
+>>>>>>> b287d3d3b10b787d241aaa20de791c87ea9e35aa
                         }else{
                               $stmt = $con->prepare("INSERT INTO users (username,fullname,email,password) VALUES(?,?,?,?)");
                               $stmt->execute(array($user,$full,$email,$hashpass));

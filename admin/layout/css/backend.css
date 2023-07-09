@@ -36,4 +36,24 @@
 }
 .main-table .btn{
     font-size: 15px;
+    color: white;
+}
+.main-table{
+    box-shadow: 0 3px 10px #969292;
+    background-color: rgb(230, 224, 224);
+}
+
+
+/*
+dashboard
+*/
+.dash .dash-stat {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 20px;
+    font-size: 15px;
+}
+.dash .dash-stat span{
+    display: block;
+    font-size: 50px;
 }

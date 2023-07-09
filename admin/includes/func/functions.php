@@ -9,13 +9,6 @@
 
     }
 
-    function redirect($message , $second =4){
-        echo "<div class='alert alert-danger text-center col-lg-4 col-lg-offset-4 '>.$message.</div>";
-        echo "<div class='alert alert-info text-center col-lg-4 col-lg-offset-4 '> you will redirect to homepage after .$second. seconds</div>";
-        header ("refresh:$second;url=index.php");
-        exit();
-    }
-
     function checkitem($select,$from,$value){
         global $con;
         $stmnt= $con->prepare("SELECT $select FROM $from WHERE $select= ?");
@@ -24,3 +17,23 @@
         return $count;
 
     }
+
+    function redirect($errmsg, $url, $seconds = 3){
+       
+        if(empty($url)){
+            $url='index.php';
+        }else{
+            if(isset($_SERVER['HTTP_REFERER'])){
+                $url=$_SERVER['HTTP_REFERER'];
+            }else{
+                $url='index.php';   
+            }
+        }
+        echo $errmsg;
+        echo '<div class = "alert alert-info col-md-6 container text-center d-flex align-items-center justify-content-center"> you will redirect to' .$url.' in '.$seconds.' seconds</div>';
+        header("refresh:$seconds; url=$url");
+    }
+  
+    
+    
+
