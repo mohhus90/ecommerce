@@ -33,7 +33,12 @@
         echo '<div class = "alert alert-info col-md-6 container text-center d-flex align-items-center justify-content-center"> you will redirect to' .$url.' in '.$seconds.' seconds</div>';
         header("refresh:$seconds; url=$url");
     }
-  
+  function cont($item, $table){
+    global $con;
+    $stmnt2 = $con->prepare("SELECT COUNT($item) FROM $table;");
+    $stmnt2->execute();
+    return $stmnt2->fetchColumn();
+  }
     
     
 

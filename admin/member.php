@@ -40,12 +40,15 @@
                     echo '<td style="border-color:rgb(124, 114, 114);">'.$row['username'].'</td>';
                     echo '<td style="border-color:rgb(124, 114, 114);">'.$row['email'].'</td>';
                     echo '<td style="border-color:rgb(124, 114, 114);">'.$row['fullname'].'</td>';
-                    echo '<td style="border-color:rgb(124, 114, 114);">'.''.'</td>';
+                    echo '<td style="border-color:rgb(124, 114, 114);">'.$row['regdate'].'</td>';
                     echo '<td style="border-color:rgb(124, 114, 114);">';
-                    echo '<a href="member.php?do=edit&userid='. $row['userid'].'" class="btn btn-success"><i class="fa fa-edit"></i>Edit</a>';
+                    echo '<a href="member.php?do=edit&userid='. $row['userid'].'" class="btn btn-success"><i class="fa fa-edit"></i> Edit</a>';
                     echo ' ';
-                    echo '<a href="member.php?do=delete&userid='. $row['userid'].'" class="btn btn-danger confirm"><i class="fa fa-close"></i>Delete</a>';
-
+                    echo '<a href="member.php?do=delete&userid='. $row['userid'].'" class="btn btn-danger confirm"><i class="fa fa-close"></i> Delete</a>';
+                    echo ' ';
+                    if($row['regstatus']==0){
+                      echo '<a href="member.php?do=active&userid='. $row['userid'].'" class="btn btn-info "><i class="fa fa-close"></i> active</a>';
+                    }
                     echo '</td>';
                     echo '</tr>';
                   } 
@@ -130,12 +133,12 @@
                         // $count= $stmt->rowCount();
                   
 
-                        if($count >0){ 
+                        if($cheked >0){ 
                           $errmsg = '<div class="alert alert-danger text-center d-flex justify-content-center">'. 'This user is already exist' .'</div>';
                           redirect($errmsg,'back');
 
                         }else{
-                              $stmt = $con->prepare("INSERT INTO users (username,fullname,email,password) VALUES(?,?,?,?)");
+                              $stmt = $con->prepare("INSERT INTO users (username,fullname,email,password,regdate,regstatus) VALUES(?,?,?,?,now(),1)");
                               $stmt->execute(array($user,$full,$email,$hashpass));
                               $count= $stmt->rowCount();
                               redirect($count .' '. 'Record Succesfully Inserted' ,3);
@@ -229,9 +232,9 @@
                       $erorrarray[]=  "you can't set Email empty";
                     }
                     
-                    foreach($erorrarray as $erorr){
+                    foreach($erorrarray as $eror){
                     
-                      redirect($erorr);
+                      echo $eror . '<br>';
                     }
                   
                     if(empty($erorrarray)){

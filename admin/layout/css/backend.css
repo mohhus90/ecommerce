@@ -1,3 +1,7 @@
+ body{
+   
+    text-decoration: none;
+}
 .loginedit{
     margin: 0px 200px;
 }
@@ -47,12 +51,36 @@
 dashboard
 */
 .dash .dash-stat {
-    background-color: #eee;
+   
     border: 1px solid #ccc;
-    padding: 20px;
+    padding: 50px;
     font-size: 15px;
+    color: white;
+    border-radius: 10px;
+}
+.dash .dash-stat a {
+    color: white;
+    text-decoration: none;
+}
+.dash .st-member{
+    background-color: #686de0;
+}
+.dash .st-pending{
+    background-color: #f0932b;
+}
+.dash .st-items{
+    background-color: #eb4d4b;
+}
+.dash .st-comment{
+    background-color: #be2edd;
 }
 .dash .dash-stat span{
     display: block;
     font-size: 50px;
+}
+.panel1{
+    background-color: #ecdfdf;
+}
+.panel2{
+    background-color: #ffffff;
 }
