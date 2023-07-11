@@ -262,9 +262,7 @@
           include $tmpl."footer.php";
       }
       else{
-        redirect('Sorry you not have authorized' , 3);
-        
-        
+        echo'Sorry you not have authorized';
       }
       
 ?>
