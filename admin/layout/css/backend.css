@@ -84,3 +84,8 @@ dashboard
 .panel2{
     background-color: #ffffff;
 }
+
+.latest-users li{
+    padding: 5px;
+    overflow: hidden;
+}

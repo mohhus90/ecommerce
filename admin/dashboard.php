@@ -6,7 +6,7 @@
         //   header('location: dashboard.php');
           // echo '<h1>Welcome to Dashboard </h1>' . $_SESSION['username'];
           include "init.php";
-          
+          $rows =latest('*','users','userid','DESC',3);
             ?>
               <div class='container dash home-stats text-center'>
                 <h1> Dashboard</h1>
@@ -53,7 +53,18 @@
                         <i class="fa fa-users"></i> Latest Registerd Users
                       </div>
                       <div class="panel-body border pane2">
-                        Test
+                          <ul class="list-unstyled latest-users">
+                            <?php foreach($rows as $row){
+                              echo '<div class="container">';
+                              echo '<li class="d-inline" >';
+                              echo $row['username'];
+                              echo '<div class="d-flex justify-content-end  d-inline ">';
+                              echo '<a href="member.php?do=edit&userid='. $row['userid'].'" class="btn btn-success"><i class="fa fa-edit"></i> Edit</a>';
+                              echo '</div>';
+                              echo '</div>';
+                              echo '</li>';
+                            } ?>
+                          </ul>  
                       </div>
                     </div>
                   </div>
