@@ -10,8 +10,11 @@
           $do = isset($_GET['do']) ? $_GET['do'] : 'manage';
     
           if($do=='manage'){
-           
-            $stmt = $con->prepare("SELECT * FROM users ");
+            $query='';
+            if(isset($_GET['page']) && $_GET['page']=='pending'){
+              $query='WHERE regstatus=0';
+            }
+            $stmt = $con->prepare("SELECT * FROM users $query");
             $stmt->execute(array());
             $rows = $stmt->fetchall();
             
@@ -241,7 +244,6 @@
                       $stmt = $con->prepare("UPDATE users SET username = ?, fullname = ?, email =?, password=? where userid= ?");
                       $stmt->execute(array($user,$full,$email,$hashedpass,$id));
                       $count= $stmt->rowCount();
-                      echo $count .' '. 'Record Succesfully Updated';
                       redirect($count .' '. 'Record Succesfully Updated' ,6);
                     }
                     
@@ -257,6 +259,14 @@
                   $stmt->execute(array($userid));
                   $count= $stmt->rowCount();
                   redirect($count .' '. 'Record Succesfully Deleted' ,3);
+            }elseif($do=='active'){
+              echo "<h1 class='text-center'>Delete User</h1>";
+              $userid=isset($_GET['userid']) && is_numeric($_GET['userid'])? intval($_GET['userid']):0;
+                  $stmt = $con->prepare("UPDATE users SET regstatus = 1 where userid= ?");
+                  $stmt->execute(array($userid));
+                  $count= $stmt->rowCount();
+                  $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">'.$count .' '. 'Record Succesfully Activated</div>';
+                  redirect($errmsg,'back');
             }     
 
           include $tmpl."footer.php";

@@ -23,7 +23,7 @@
                     <div class='dash-stat stat st-pending'>
                       Pending Members
                       <span>
-                      <a href="member.php?do=active"><?php echo checkitem('regstatus','users',0); ?></a>
+                      <a href="member.php?page=pending"><?php echo checkitem('regstatus', 'users',0); ?></a>
                       </span>
                     </div>
                   </div>
