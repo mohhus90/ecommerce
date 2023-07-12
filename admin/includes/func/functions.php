@@ -23,7 +23,7 @@
         if(empty($url)){
             $url='index.php';
         }else{
-            if(isset($_SERVER['HTTP_REFERER'])){
+            if(isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER']!==""){
                 $url=$_SERVER['HTTP_REFERER'];
             }else{
                 $url='index.php';   
@@ -39,6 +39,12 @@
     $stmnt2->execute();
     return $stmnt2->fetchColumn();
   }
-    
-    
+    function latest($selects,$tables,$orders,$descs,$limits){
+        global $con;
+        $stm = $con->prepare("SELECT $selects FROM $tables ORDER BY $orders $descs LIMIT $limits ;");
+        $stm->execute();
+        $rows=$stm->fetchall();
+        return $rows;
 
+    }
+    

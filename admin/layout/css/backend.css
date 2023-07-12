@@ -86,4 +86,8 @@ dashboard
 }
 .latest{
     margin-top: 10px;
+
+.latest-users li{
+    padding: 5px;
+    overflow: hidden;
 }
