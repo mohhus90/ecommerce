@@ -144,7 +144,9 @@
                               $stmt = $con->prepare("INSERT INTO users (username,fullname,email,password,regdate,regstatus) VALUES(?,?,?,?,now(),1)");
                               $stmt->execute(array($user,$full,$email,$hashpass));
                               $count= $stmt->rowCount();
-                              redirect($count .' '. 'Record Succesfully Inserted' ,3);
+                              $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">'.$count .' '. ' Record Succesfully Inserted</div>';
+                              redirect($errmsg,'back');
+        
                         }
                   }
                   
@@ -244,12 +246,17 @@
                       $stmt = $con->prepare("UPDATE users SET username = ?, fullname = ?, email =?, password=? where userid= ?");
                       $stmt->execute(array($user,$full,$email,$hashedpass,$id));
                       $count= $stmt->rowCount();
-                      redirect($count .' '. 'Record Succesfully Updated' ,6);
+                      
+                      $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">'.$count .' '. ' Record Succesfully Updated</div>';
+                      redirect($errmsg,'back');
+
                     }
                     
                 
               }else{
-                redirect('you canot browse this page directly' ,3);
+                
+                $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">you canot browse this page directly</div>';
+                redirect($errmsg);
               }
 
             }elseif($do=='delete'){
@@ -258,7 +265,8 @@
                   $stmt = $con->prepare("DELETE FROM users WHERE userid = ? LIMIT 1");
                   $stmt->execute(array($userid));
                   $count= $stmt->rowCount();
-                  redirect($count .' '. 'Record Succesfully Deleted' ,3);
+                  $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">'.$count .' '. 'Record Succesfully Deleted</div>';
+                  redirect($errmsg,'back');
             }elseif($do=='active'){
               echo "<h1 class='text-center'>Delete User</h1>";
               $userid=isset($_GET['userid']) && is_numeric($_GET['userid'])? intval($_GET['userid']):0;
