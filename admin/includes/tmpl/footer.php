@@ -18,14 +18,14 @@
                 password.setAttribute('type', type);
                 // toggle the eye slash icon
                 // this.classList.toggle('fa-eye-slash');
-                if ( this.classList.contains('tog') ){
+                if (!this.classList.contains('tog')){
+                    this.classList.remove('fa-eye-slash');
+                    this.className +=' tog fa-eye';
+                }
+                else if( this.classList.contains('tog') ){
                     this.className +=' fa-solid fa-eye-slash';
                     this.classList.remove('fa-eye');
                     this.classList.remove('tog');
-                }
-                else if(!this.classList.contains('tog')){
-                    this.classList.remove('fa-eye-slash');
-                    this.className +=' tog fa-eye';
                 }
             });
         </script>

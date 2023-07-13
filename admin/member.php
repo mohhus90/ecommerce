@@ -272,10 +272,7 @@
           include $tmpl."footer.php";
       }
       else{
-        $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">Sorry you not have authorized</div>';
-        redirect($errmsg,'back');
-        
-        
+        echo'Sorry you not have authorized';
       }
       
 ?>
