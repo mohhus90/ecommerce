@@ -272,7 +272,12 @@
           include $tmpl."footer.php";
       }
       else{
-        echo'Sorry you not have authorized';
+        // echo'Sorry you not have authorized';
+        $seconds=3;
+        $url='index.php';
+        echo'<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">Sorry you not have authorized</div>';
+        echo '<div class = "alert alert-info col-md-6 container text-center d-flex align-items-center justify-content-center"> you will redirect to' .$url.' in '.$seconds.' seconds</div>';
+        header("refresh:$seconds; url=$url");
       }
       
 ?>

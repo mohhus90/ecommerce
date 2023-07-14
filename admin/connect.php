@@ -24,7 +24,6 @@
         $stmnts= $con->prepare("SELECT username FROM users WHERE username= ?");
         $stmnts->execute(array('hus'));
         $count = $stmnts->rowCount();
-        echo $count;
         if($count==0){
                 $stmnt = $con->prepare("INSERT INTO users (username,fullname,password,regdate,regstatus) VALUES(?,?,?,now(),1)");
                 $stmnt->execute(array('hus','hus','506da6907f960f50cad09ca45512519f91515237'));
