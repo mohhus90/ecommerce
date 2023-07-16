@@ -53,7 +53,7 @@
                         <i class="fa fa-users"></i> Latest Registerd Users
                         <div >  
                             <form   action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-                            <input type='text' placeholder='Enter nuber of request'name='latestno' />
+                            <input type='text' placeholder='Enter number of request'name='latestno' />
                             <?php 
                             if(empty($_POST['latestno'])){
                               $latestno=3;
