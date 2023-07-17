@@ -11,6 +11,7 @@ try {
     $dbname = "shop";
     $createDbQuery = "CREATE DATABASE IF NOT EXISTS $dbname";
     $conn->exec($createDbQuery);
+    
 
     
 } catch(PDOException $e) {
@@ -26,6 +27,7 @@ $options = array(
 try {
     $con = new PDO($dsn, $user, $pass, $options);
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $con->exec("SET time_zone='+03:00';");
     $st = $con->prepare("CREATE TABLE IF NOT EXISTS users (
         userid int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
         username varchar(100) NOT NULL,
