@@ -2,9 +2,10 @@
    
     text-decoration: none;
 }
-.loginedit{
-    margin: 0px 200px;
-}
+/* .loginedit{
+    margin: 0px 100%;
+    
+} */
 .loginedit .btn{
     width: 100%;
 }

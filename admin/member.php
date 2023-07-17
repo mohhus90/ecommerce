@@ -1,8 +1,7 @@
 <?php
+      ob_start();
       session_start();
-      $title = 'Manage User';
-      
-      
+      $title = 'Manage User';    
     if(isset($_SESSION['username'])){
         //   header('location: dashboard.php');
           // echo '<h1>Welcome to Dashboard </h1>' . $_SESSION['username'];
@@ -67,7 +66,7 @@
         }elseif($do=='add'){?>
 
           <h1 class='text-center'>Add User</h1>
-          <div class= 'loginedit'>  
+          <div class= 'container d-flex align-items-center justify-content-center'>  
             <form class= 'form-horizontal' action="?do=insert" method="POST">
             
               <div  class='form-group'>
@@ -166,7 +165,7 @@
                           $passrow=$row['password'];?>
 
                           <h1 class='text-center'>Edit User</h1>
-                          <div class= 'loginedit'>  
+                          <div class= 'container d-flex align-items-center justify-content-center'>  
                             <form class= 'form-horizontal' action="?do=update" method="POST">
                             <input  type='hidden' value="<?php echo $row['userid']?>" name='userid' />
                               <div  class='form-group'>
@@ -287,5 +286,5 @@
         echo '<div class = "alert alert-info col-md-6 container text-center d-flex align-items-center justify-content-center"> you will redirect to' .$url.' in '.$seconds.' seconds</div>';
         header("refresh:$seconds; url=$url");
       }
-      
+  ob_end_flush();    
 ?>
