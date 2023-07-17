@@ -7,7 +7,7 @@
     }
     // print_r($_SESSION);
     include "init.php";
-    
+    // include "/home/vol9_2/unaux.com/unaux_34610376/htdocs/ecommerce/admin/index.php";
 
      
 ?>
