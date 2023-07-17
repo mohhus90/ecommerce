@@ -2,8 +2,7 @@
 ob_start();
 $servername = "localhost";
 $username = "root";
-$password = ""; // Replace with your MySQL password
-
+$password = ""; 
 try {
     $conn = new PDO("mysql:host=$servername;", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -30,14 +29,14 @@ try {
     $con->exec("SET time_zone='+03:00';");
     $st = $con->prepare("CREATE TABLE IF NOT EXISTS users (
         userid int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        username varchar(100) NOT NULL,
-        email varchar(100) NOT NULL,
-        password varchar(100) NOT NULL,
-        fullname varchar(100) NOT NULL,
+        username varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+        email varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+        password varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+        fullname varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
         groupid int(11) NOT NULL DEFAULT 0,
         regstatus int(11) NOT NULL DEFAULT 0,
         regdate datetime NOT NULL
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;");
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
     $st2 = $con->prepare("CREATE TABLE IF NOT EXISTS `items` (
         `itemid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
         `name` varchar(100) NOT NULL,

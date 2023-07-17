@@ -13,6 +13,7 @@
     include $tmpl .'header.php';
     
     if(!isset($nonavbar)){include $tmpl . "navbar.php";}
+    ?>
 
     
     
