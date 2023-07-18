@@ -1,8 +1,8 @@
 <?php
 ob_start();
-$servername = "localhost";
-$username = "root";
-$password = ""; 
+$servername = "sql208.unaux.com";//localhost
+$username = "unaux_34610376";//root
+$password = "HusHus@4218"; //""
 try {
     $conn = new PDO("mysql:host=$servername;", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -17,9 +17,9 @@ try {
     echo "Error creating database: " . $e->getMessage();
 }
 
-$dsn = 'mysql:host=localhost;dbname=shop;charset=utf8mb4';
-$user = 'root';
-$pass = '';
+$dsn = 'mysql:host=sql208.unaux.com;dbname=shop;charset=utf8mb4';//localhost
+$user = 'unaux_34610376';//root
+$pass = 'HusHus@4218';//""
 $options = array(
     PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8mb4',
 );
