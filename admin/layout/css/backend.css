@@ -2,16 +2,16 @@
    
     text-decoration: none;
 }
-/* .loginedit{
+.loginedit{
     margin: 0px 100%;
     
-} */
+}
 .loginedit .btn{
     width: 100%;
 }
-/* .login{
+.login{
     margin: 100px auto;
-} */
+}
 .form-control, .form-group{
     position: relative;
 }
