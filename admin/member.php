@@ -66,37 +66,37 @@
         }elseif($do=='add'){?>
 
           <h1 class='text-center'>Add User</h1>
-          <div class= 'container d-flex align-items-center justify-content-center'>  
+          <div class= 'container align-items-center justify-content-center'>  
             <form class= 'form-horizontal' action="?do=insert" method="POST">
             
-              <div  class='form-group'>
-                  <label class= 'col-sm-2 control-label'>username</label>
+              <div  class='form-group row'>
+                  <label class= 'col-sm-1 control-label'>username</label>
                   <div class='col-sm-8'>
                     <input class='form-control' type='text' name='user' required='required' autocomplete='off' />
                   </div>
               </div>
-              <div  class='form-group'>
-                  <label class= 'col-sm-2 control-label'>password</label>
+              <div  class='form-group row'>
+                  <label class= 'col-sm-1 control-label'>password</label>
                   <div class='col-sm-8'>
                     <input class='form-control passowrd' id="pass_log_id" type='password' name='pass' autocomplete='new-password' required='required'/>
                     <!-- <i class='showpass fa fa-eye fa-1x'></i> -->
                     <i class="showpass togglePassword tog far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
                   </div>
               </div>
-              <div  class='form-group'>
-                  <label class= 'col-sm-2 control-label'>Email</label>
+              <div  class='form-group row'>
+                  <label class= 'col-sm-1 control-label'>Email</label>
                   <div class='col-sm-8'>
                     <input class='form-control' type='email' name='email' />
                   </div>
               </div>
-              <div  class='form-group'>
-                  <label class= 'col-sm-2 control-label'>Fullname</label>
+              <div  class='form-group row'>
+                  <label class= 'col-sm-1 control-label'>Fullname</label>
                   <div class='col-sm-8'>
                     <input class='form-control' type='text' name='full' />
                   </div>
               </div>
-              <div  class='form-group'>
-                   <label class= 'col-sm-2 control-label'></label>
+              <div  class='form-group row'>
+                   <label class= 'col-sm-1 control-label'></label>
                    <div class='col-sm-8'>
                     <input class='btn btn-primary btn-block' type='submit' value='add' />
                   </div>
@@ -165,35 +165,35 @@
                           $passrow=$row['password'];?>
 
                           <h1 class='text-center'>Edit User</h1>
-                          <div class= 'container d-flex align-items-center justify-content-center'>  
+                          <div class= 'container align-items-center justify-content-center'>  
                             <form class= 'form-horizontal' action="?do=update" method="POST">
                             <input  type='hidden' value="<?php echo $row['userid']?>" name='userid' />
-                              <div  class='form-group'>
-                                  <label class= 'col-sm-2 control-label'>username</label>
+                              <div  class='form-group row'>
+                                  <label class= 'col-sm-1 control-label'>username</label>
                                   <div class='col-sm-8'>
                                     <input class='form-control' type='text' value="<?php echo $row['username']?>" name='user' required='required' autocomplete='off' />
                                   </div>
                               </div>
-                              <div  class='form-group'>
-                                  <label class= 'col-sm-2 control-label'>password</label>
+                              <div  class='form-group row'>
+                                  <label class= 'col-sm-1 control-label'>password</label>
                                   <div class='col-sm-8'>
                                     <input class='form-control' type='password' name='pass' autocomplete='new-password' />
                                   </div>
                               </div>
-                              <div  class='form-group'>
-                                  <label class= 'col-sm-2 control-label'>Email</label>
+                              <div  class='form-group row'>
+                                  <label class= 'col-sm-1 control-label'>Email</label>
                                   <div class='col-sm-8'>
                                     <input class='form-control' type='email' value="<?php echo $row['email']?>" name='email' />
                                   </div>
                               </div>
-                              <div  class='form-group'>
-                                  <label class= 'col-sm-2 control-label'>Fullname</label>
+                              <div  class='form-group row'>
+                                  <label class= 'col-sm-1 control-label'>Fullname</label>
                                   <div class='col-sm-8'>
                                     <input class='form-control' type='text' value="<?php echo $row['fullname']?>" name='full' />
                                   </div>
                               </div>
-                              <div  class='form-group'>
-                              <label class= 'col-sm-2 control-label'></label>
+                              <div  class='form-group row'>
+                              <label class= 'col-sm-1 control-label'></label>
                                   <div class='col-sm-8'>
                                     <input class='btn btn-primary btn-block' type='submit' value='save' />
                                   </div>

@@ -1,10 +1,8 @@
-<nav class="navbar navbar-inverse" > <!--  navbar navbar-inverse /// navbar navbar-expand-lg navbar-dark bg-dark -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" > <!--  navbar navbar-inverse /// navbar navbar-expand-lg navbar-dark bg-dark -->
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-nav" aria-expanded="false">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#app-nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand" href="dashboard.php">Home</a>
     </div>
