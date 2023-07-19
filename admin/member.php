@@ -49,7 +49,7 @@
                     echo '<a href="member.php?do=delete&userid='. $row['userid'].'" class="btn btn-danger confirm"><i class="fa fa-close"></i> Delete</a>';
                     echo ' ';
                     if($row['regstatus']==0){
-                      echo '<a href="member.php?do=active&userid='. $row['userid'].'" class="btn btn-info "><i class="fa fa-close"></i> active</a>';
+                      echo '<a href="member.php?do=active&userid='. $row['userid'].'" class="btn btn-info "><i class="fa fa-check"></i> active</a>';
                     }
                     echo '</td>';
                     echo '</tr>';
@@ -66,36 +66,41 @@
         }elseif($do=='add'){?>
 
           <h1 class='text-center'>Add User</h1>
-          <div class= 'container align-items-center justify-content-center'>  
-            <form class= 'form-horizontal' action="?do=insert" method="POST">
+          <div class= 'container'>  
+            <form class= 'justify-content-center col-sm-9' action="?do=insert" method="POST">
             
               <div  class='form-group row'>
-                  <label class= 'col-sm-1 control-label'>username</label>
+              <label class= 'col-sm-2 control-label'></label>
+                  <label class= 'col-sm-2 control-label'>username</label>
                   <div class='col-sm-8'>
                     <input class='form-control' type='text' name='user' required='required' autocomplete='off' />
                   </div>
               </div>
               <div  class='form-group row'>
-                  <label class= 'col-sm-1 control-label'>password</label>
+              <label class= 'col-sm-2 control-label'></label>
+                  <label class= 'col-sm-2 control-label'>password</label>
                   <div class='col-sm-8'>
                     <input class='form-control passowrd pass_log_id' type='password' name='pass' autocomplete='new-password' required='required'/>
                     <i class="showpass togglePassword far fa-solid fa-eye-slash" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
                   </div>
               </div>
               <div  class='form-group row'>
-                  <label class= 'col-sm-1 control-label'>Email</label>
+              <label class= 'col-sm-2 control-label'></label>
+                  <label class= 'col-sm-2 control-label'>Email</label>
                   <div class='col-sm-8'>
                     <input class='form-control' type='email' name='email' />
                   </div>
               </div>
               <div  class='form-group row'>
-                  <label class= 'col-sm-1 control-label'>Fullname</label>
+              <label class= 'col-sm-2 control-label'></label>
+                  <label class= 'col-sm-2 control-label'>Fullname</label>
                   <div class='col-sm-8'>
                     <input class='form-control' type='text' name='full' />
                   </div>
               </div>
               <div  class='form-group row'>
-                   <label class= 'col-sm-1 control-label'></label>
+              <label class= 'col-sm-2 control-label'></label>
+                   <label class= 'col-sm-2 control-label'></label>
                    <div class='col-sm-8'>
                     <input class='btn btn-primary btn-block' type='submit' value='add' />
                   </div>
@@ -164,35 +169,40 @@
                           $passrow=$row['password'];?>
 
                           <h1 class='text-center'>Edit User</h1>
-                          <div class= 'container align-items-center justify-content-center'>  
-                            <form class= 'form-horizontal' action="?do=update" method="POST">
+                          <div class= 'container'>  
+                            <form class= 'justify-content-center col-sm-9' action="?do=update" method="POST">
                             <input  type='hidden' value="<?php echo $row['userid']?>" name='userid' />
                               <div  class='form-group row'>
-                                  <label class= 'col-sm-1 control-label'>username</label>
+                              <label class= 'col-sm-2 control-label'></label>
+                                  <label class= 'col-sm-2 control-label'>username</label>
                                   <div class='col-sm-8'>
                                     <input class='form-control' type='text' value="<?php echo $row['username']?>" name='user' required='required' autocomplete='off' />
                                   </div>
                               </div>
                               <div  class='form-group row'>
-                                  <label class= 'col-sm-1 control-label'>password</label>
+                              <label class= 'col-sm-2 control-label'></label>
+                                  <label class= 'col-sm-2 control-label'>password</label>
                                   <div class='col-sm-8'>
                                     <input class='form-control' type='password' name='pass' autocomplete='new-password' />
                                   </div>
                               </div>
                               <div  class='form-group row'>
-                                  <label class= 'col-sm-1 control-label'>Email</label>
+                              <label class= 'col-sm-2 control-label'></label>
+                                  <label class= 'col-sm-2 control-label'>Email</label>
                                   <div class='col-sm-8'>
                                     <input class='form-control' type='email' value="<?php echo $row['email']?>" name='email' />
                                   </div>
                               </div>
                               <div  class='form-group row'>
-                                  <label class= 'col-sm-1 control-label'>Fullname</label>
+                              <label class= 'col-sm-2 control-label'></label>
+                                  <label class= 'col-sm-2 control-label'>Fullname</label>
                                   <div class='col-sm-8'>
                                     <input class='form-control' type='text' value="<?php echo $row['fullname']?>" name='full' />
                                   </div>
                               </div>
                               <div  class='form-group row'>
-                              <label class= 'col-sm-1 control-label'></label>
+                              <label class= 'col-sm-2 control-label'></label>
+                              <label class= 'col-sm-2 control-label'></label>
                                   <div class='col-sm-8'>
                                     <input class='btn btn-primary btn-block' type='submit' value='save' />
                                   </div>
@@ -266,7 +276,7 @@
                   $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">'.$count .' '. 'Record Succesfully Deleted</div>';
                   redirect($errmsg,'back');
             }elseif($do=='active'){
-              echo "<h1 class='text-center'>Delete User</h1>";
+              echo "<h1 class='text-center'>active User</h1>";
               $userid=isset($_GET['userid']) && is_numeric($_GET['userid'])? intval($_GET['userid']):0;
                   $stmt = $con->prepare("UPDATE users SET regstatus = 1 where userid= ?");
                   $stmt->execute(array($userid));
@@ -278,7 +288,6 @@
           include $tmpl."footer.php";
       }
       else{
-        // echo'Sorry you not have authorized';
         $seconds=3;
         $url='index.php';
         echo'<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">Sorry you not have authorized</div>';
