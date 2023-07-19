@@ -78,9 +78,8 @@
               <div  class='form-group row'>
                   <label class= 'col-sm-1 control-label'>password</label>
                   <div class='col-sm-8'>
-                    <input class='form-control passowrd' id="pass_log_id" type='password' name='pass' autocomplete='new-password' required='required'/>
-                    <!-- <i class='showpass fa fa-eye fa-1x'></i> -->
-                    <i class="showpass togglePassword tog far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
+                    <input class='form-control passowrd pass_log_id' type='password' name='pass' autocomplete='new-password' required='required'/>
+                    <i class="showpass togglePassword far fa-solid fa-eye-slash" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i>
                   </div>
               </div>
               <div  class='form-group row'>
