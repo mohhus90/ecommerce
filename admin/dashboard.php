@@ -9,109 +9,114 @@
           
             ?>
               <div class='container dash home-stats text-center'>
-                <h1> Dashboard</h1>
+                <h1><i class="fa fa-gauge-high icon"></i> Dashboard</h1>
                 <div class= 'row'>
                   <div class='col-md-3'>
                     <div class='dash-stat stat st-member'>
-                      Total Members
-                      <span>
-                        <a href="member.php"><?php echo cont('userid', 'users'); ?></a>
-                      </span>
+                      <i class="fa-solid fa-users fa-4x icons "></i>
+                      <div class="totals ">
+                        Total Members
+                        <span>
+                          <a href="member.php"><?php echo cont('userid', 'users'); ?></a>
+                        </span>
+                      </div>
                     </div>
                   </div>
                   <div class='col-md-3'>
                     <div class='dash-stat stat st-pending'>
+                    <i class="fa-solid fa-user-plus fa-4x icons"></i>
+                    <div class="totals ">
                       Pending Members
                       <span>
                       <a href="member.php?page=pending"><?php echo checkitem('regstatus', 'users',0); ?></a>
                       </span>
+                      </div>
                     </div>
                   </div>
                   <div class='col-md-3'>
                     <div class='dash-stat stat st-items'>
-                      Total Items
+                    <i class="fa-solid fa-tag fa-4x icons"></i>
+                    <div class="totals ">
+                    Total Items
                       <span>
-                        200
+                      <a href="items.php"><?php echo cont('itemid', 'items'); ?></a>
                       </span>
+                      </div>
                     </div>
                   </div>
                   <div class='col-md-3'>
                     <div class='dash-stat stat st-comment'>
-                      Total Comments
+                    <i class="fa-solid fa-comments fa-4x icons"></i>
+                    <div class="totals ">
+                      Store
                       <span>
-                        200
+                        0
                       </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
               <div class ="container latest">
                 <div class="row">
-                  <div class="col-sm-6 mt-3">
-                    <div class="panel panel-default border ">
-                      <div class="panel-heading panel1">
-                        <i class="fa fa-users"></i> Latest Registerd Users
-                        <div >  
-                            <form   action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-                            <input type='text' placeholder='Enter number of request'name='latestno' />
-                            <?php 
-                            if(empty($_POST['latestno'])){
-                              $latestno=3;
-                              $rows =latest('*','users','userid','DESC',$latestno);
-                              ?>
-                      </div>
-                      <div class="panel-body border pane2">
-                          <ul class="list-unstyled">
-                            
-                            <?php foreach($rows as $row){
-                              
-                              echo '<div class="container">';
-                              echo '<li>';
-                              echo $row['username'];
-                              echo '<div class="">';
-                              echo '<a href="member.php?do=edit&userid='. $row['userid'].'" class="btn btn-success"><i class="fa fa-edit"></i> Edit</a>';
-                              echo '</div>';
-                              echo '</div>';
-                              echo '</li>';
-                            
-                            }
-                          }else{
-                              $latestno= $_POST['latestno'];  
-                            $rows =latest('*','users','userid','DESC',$latestno);
-                            
-                            ?>
-                      </div>
-                      <div class="panel-body border pane2">
-                          <ul class="list-unstyled latest-users">
-                            
-                            <?php foreach($rows as $row){
-                              
-                              echo '<div class="container">';
-                              echo '<li >';
-                              echo $row['username'];
-                              echo '<div class="">';
-                              echo '<a href="member.php?do=edit&userid='. $row['userid'].'" class="btn btn-success"><i class="fa fa-edit"></i> Edit</a>';
-                              echo '</div>';
-                              echo '</div>';
-                              echo '</li>';
-                            } 
-                          }?>
-                          </ul>  
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-6 mt-3">
-                    <div class="panel panel-default border ">
-                      <div class="panel-heading panel1">
-                        <i class="fa fa-tag"></i> Latest Items
-                      </div>
-                      <div class="panel-body border pane2">
-                        Test
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                  <div class="col-sm-6 mt-3"><!-- Begain of users Panel -->
+                    <div class=" panel panel-default border panel1">
+                        <div class="panel-heading latest-reg">
+                          <i class="fa fa-users"></i> Latest Registerd Users
+                        </div > 
+                        <div class=""> 
+                          <span class="plus-minus"><i class="fa fa-plus pls"></i></span>
+                          </div>
+                    </div> <!-- panel panel-default border -->
+                    <div class="list-users"><!-- list-users -->
+                            <div class="panel-body border panel2">
+                              <ul class="list-unstyled">
+                                <?php $rows =latest('*','users','userid','DESC',5);
+                                foreach($rows as $row){
+                                echo '<div class="list">';
+                                echo '<li>';
+                                echo $row['username'];
+                                echo '<div class="div-but">';
+                                echo '<a href="member.php?do=edit&userid='. $row['userid'].'" class="btn btn-success button"><i class="fa fa-edit"></i> Edit</a>';
+                                echo '</div">';
+                                echo '</li>';
+                                echo '</div>';
+                                }?>
+                                </ul>  
+                            </div>
+                      </div><!-- panel panel-default border panel1 -->
+                  </div><!-- col-sm-6 mt-3 --><!-- End of users Panel -->
+                  <div class="col-sm-6 mt-3"><!-- Begain of Item Panel -->
+                    <div class=" panel panel-default border panel1">
+                        <div class="panel-heading latest-reg">
+                          <i class="fa fa-tag"></i> Latest Registerd Items
+                        </div > 
+                        <div class=""> 
+                          <span class="plus-minus"><i class="fa fa-plus pls"></i></span>
+                          </form>
+                          </div>
+                    </div> <!-- panel panel-default border -->
+                    <div class="list-users"><!-- list-users -->
+                            <div class="panel-body border panel2">
+                              <ul class="list-unstyled">
+                                <?php
+                                $items =latest('*','items','itemid','DESC',5); 
+                                foreach($items as $item){
+                                echo '<div class="list">';
+                                echo '<li>';
+                                echo $item['name'];
+                                echo '<div class="div-but">';
+                                echo '<a href="items.php?do=edit&itemid='. $item['itemid'].'" class="btn btn-success button"><i class="fa fa-edit"></i> Edit</a>';
+                                echo '</div">';
+                                echo '</li>';
+                                echo '</div>';
+                                }?>
+                            </ul>
+                          </div>
+                      </div><!-- panel panel-default border panel1 -->
+                  </div><!-- col-sm-6 mt-3 --><!-- End of Item Panel -->
+                </div><!-- row -->
+              </div> <!-- container latest -->
               
             <?php
           include $tmpl."footer.php";

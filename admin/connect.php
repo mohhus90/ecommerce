@@ -33,7 +33,8 @@ try {
         fullname varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
         groupid int(11) NOT NULL DEFAULT 0,
         regstatus int(11) NOT NULL DEFAULT 0,
-        regdate datetime NOT NULL
+        regdate datetime NOT NULL,
+        UNIQUE KEY `username` (`username`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
     $st2 = $con->prepare("CREATE TABLE IF NOT EXISTS `items` (
         `itemid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -48,8 +49,24 @@ try {
         KEY `user` (`user_id`),
         CONSTRAINT `user` FOREIGN KEY (`user_id`) REFERENCES `users` (`userid`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
+    $st3 = $con->prepare("CREATE TABLE IF NOT EXISTS `partners` (
+        `partid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `part_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+        `com_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+        `reg_no` int(20) NOT NULL,
+        `tax_no` int(20) NOT NULL,
+        `add_date` datetime NOT NULL,
+        `mod_date` datetime NOT NULL,
+        `user_id` int(11) NOT NULL,
+        UNIQUE KEY `uk_part_name` (`part_name`),
+        UNIQUE KEY `uk_reg_no` (`reg_no`),
+        UNIQUE KEY `uk_tax_no` (`tax_no`),
+        KEY `idx_user_id` (`user_id`),
+        CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`userid`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;");
     $st->execute();
     $st2->execute();
+    $st3->execute();
     $stmnt = $con->prepare("SELECT username FROM users WHERE username = ?");
     $stmnt->execute(array('hus'));
     $count = $stmnt->rowCount();
@@ -101,7 +118,8 @@ ob_end_flush();
 //         fullname varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
 //         groupid int(11) NOT NULL DEFAULT 0,
 //         regstatus int(11) NOT NULL DEFAULT 0,
-//         regdate datetime NOT NULL
+//         regdate datetime NOT NULL,
+//         UNIQUE KEY `username` (`username`)
 //     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
 //     $st2 = $con->prepare("CREATE TABLE IF NOT EXISTS `items` (
 //         `itemid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -116,8 +134,24 @@ ob_end_flush();
 //         KEY `user` (`user_id`),
 //         CONSTRAINT `user` FOREIGN KEY (`user_id`) REFERENCES `users` (`userid`)
 //         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;");
-//     $st->execute();
-//     $st2->execute();
+    //     $st3 = $con->prepare("CREATE TABLE IF NOT EXISTS `partners` (
+    //     `partid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    //     `part_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    //     `com_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    //     `reg_no` int(20) NOT NULL,
+    //     `tax_no` int(20) NOT NULL,
+    //     `add_date` datetime NOT NULL,
+    //     `mod_date` datetime NOT NULL,
+    //     `user_id` int(11) NOT NULL,
+    //     UNIQUE KEY `uk_part_name` (`part_name`),
+    //     UNIQUE KEY `uk_reg_no` (`reg_no`),
+    //     UNIQUE KEY `uk_tax_no` (`tax_no`),
+    //     KEY `idx_user_id` (`user_id`),
+    //     CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`userid`)
+    // ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;");
+    // $st->execute();
+    // $st2->execute();
+    // $st3->execute();
 //     $stmnt = $con->prepare("SELECT username FROM users WHERE username = ?");
 //     $stmnt->execute(array('hus'));
 //     $count = $stmnt->rowCount();

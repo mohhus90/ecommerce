@@ -51,13 +51,14 @@
 /*
 dashboard
 */
-.dash .dash-stat {
+.dash .stat {
    
     border: 1px solid #ccc;
     padding: 50px;
     font-size: 15px;
     color: white;
     border-radius: 10px;
+    height: 170px;
 }
 .dash .dash-stat a {
     color: white;
@@ -79,17 +80,87 @@ dashboard
     display: block;
     font-size: 50px;
 }
+/*panel*/
+.latest-reg{
+    height: 30px;
+    border: #c9c3c3 solid;
+}
 .panel1{
     background-color: #ecdfdf;
+    margin-top: 8px;
+    display: grid;
+}
+.form-no{
+    float: right;
+    position: absolute;
+    right: 22px;
+}
+.pls{
+    float: right;
+    position: absolute;
+    right: 22px;
+    top: 15px;
+    color: #464141;
+    
+}
+.pls:hover{
+    font-weight: bold;
+    cursor: pointer;
+    color: #a09e9e;
+}
+.input-no{
+    width: 100%;
 }
 .panel2{
     background-color: #ffffff;
+
 }
- .latest{
-    margin-top: 10px;
+.list{
+    margin-top: 8px;
+    display: grid;
+   
+}
+.div-but{
+    float: right;
+}
+.list:nth-child(even){
+
+    background: rgb(245, 237, 237);
 }
 
-.latest-users-li{
-    padding: 5px;
-    background-color: #686de0;
+
+.stat{
+    position: relative;
+    overflow: hidden;
+}
+
+.stat .totals{
+    position: absolute;
+    top:30px;
+    right: 20px;
+    float: left;
+}
+.stat .icons{
+    position: absolute;
+    top:40px;
+    left: 20px;
+    float: right;
+}
+
+/*navbar*/
+.nav-ul{
+    position: absolute;
+    right: 120px;
+}
+.nav-a{
+    color: #c7b7b7;
+    text-decoration: none;
+}
+.nav-a:hover{
+    color: #fff;
+    text-decoration: none;
+}
+.icon{
+    color: limegreen;
+    box-shadow: 0px 1px 3px #b4b4b4;
 }

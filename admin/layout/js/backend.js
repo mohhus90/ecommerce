@@ -1,5 +1,13 @@
 $(function(){
     'use strict';
+    $('.plus-minus').click(function(){
+        $(this).toggleClass('selected').parent().parent().next().fadeToggle(300);
+        if($(this).hasClass('selected')){
+            $(this).html('<i class="fa fa-minus pls"></i>');
+        }else{
+            $(this).html('<i class="fa fa-plus pls"></i>');
+        }
+    });
 
     $('[placeholder]').focus(function(){
         $(this).attr('data-text', $(this).attr('placeholder'));

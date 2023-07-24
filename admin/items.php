@@ -12,7 +12,7 @@
               $rows = $stmt->fetchall();
               
               ?>
-          <h1 class='text-center'>Manage Items</h1>
+          <h1 class='text-center'><i class="fa fa-tag icon"></i> Manage Items</h1>
             <div class= 'container'>
               <div class='table-responsive'>
                 <table class= 'table table-bordered thead-dark main-table text-center' >
@@ -64,7 +64,7 @@
             </div>
           <?php
         }elseif($do=='add'){?>
-            <h1 class='text-center'>Add Item</h1>
+            <h1 class='text-center'><i class="fa fa-tag"></i> Add Item</h1>
           <div class= ' container'>  
             <form class= 'justify-content-center col-sm-9' action="?do=insert" method="POST">
             
@@ -145,7 +145,7 @@
                   $row = $stmt->fetch();
                   $count= $stmt->rowCount();
                   if($count >0){?>
-                          <h1 class='text-center'>Edit Item</h1>
+                          <h1 class='text-center'><i class="fa fa-tag"></i> Edit Item</h1>
                           <div class= ' container'>  
                             <form class= 'justify-content-center col-sm-9' action="?do=update" method="POST">
                             <input  type='hidden' value="<?php echo $row['itemid']?>" name='itemid' />
@@ -205,17 +205,26 @@
                 $cost= $_POST['cost'];
                 $quantity= $_POST['quantity'];
                 $unit = $_POST['unit'];
-                $userid = $_SESSION['ID'];      
-                  $stmt = $con->prepare("UPDATE items SET name = ?, description = ?, cost =?, quantity=?, unit=?, user_id=?, add_date=now() where itemid= ?");
-                  $stmt->execute(array($item,$Desc,$cost,$quantity,$unit,$userid,$id));
-                  $count= $stmt->rowCount();
+                $userid = $_SESSION['ID'];
+                $stmt = $con->prepare("SELECT * FROM items WHERE name = ? AND itemid != ? LIMIT 1");
+                        $stmt->execute(array($item,$id));
+                        $row = $stmt->fetch();
+                        $cheked= $stmt->rowCount();
+                        if($cheked == 0){
+                            $stmt = $con->prepare("UPDATE items SET name = ?, description = ?, cost =?, quantity=?, unit=?, user_id=?, add_date=now() where itemid= ?");
+                            $stmt->execute(array($item,$Desc,$cost,$quantity,$unit,$userid,$id));
+                            $count= $stmt->rowCount();
 
-                  $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">'.$count .' '. ' Record Succesfully Updated</div>';
-                  redirect($errmsg,'items.php');
-          }else{
-            $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">you canot browse this page directly</div>';
-            redirect($errmsg);
-          }
+                            $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">'.$count .' '. ' Record Succesfully Updated</div>';
+                            redirect($errmsg,'items.php');
+                          }else{
+                            $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">This item is already exist</div>';
+                            redirect($errmsg, 'back',4);
+                          }
+                }else{
+                  $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">you canot browse this page directly</div>';
+                  redirect($errmsg);
+                }
 
         }elseif($do=='delete'){
           echo "<h1 class='text-center'>Delete Item</h1>";

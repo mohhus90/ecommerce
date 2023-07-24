@@ -18,7 +18,7 @@
             $rows = $stmt->fetchall();
             
             ?>
-        <h1 class='text-center'>Manage User</h1>
+        <h1 class='text-center'><i class="fa fa-users icon"></i> Manage User</h1>
           <div class= 'container'>
             <div class='table-responsive'>
               <table class= 'table table-bordered thead-dark main-table text-center' >
@@ -65,7 +65,7 @@
         <?php
         }elseif($do=='add'){?>
 
-          <h1 class='text-center'>Add User</h1>
+          <h1 class='text-center'><i class="fa fa-user-plus"></i> Add User</h1>
           <div class= 'container'>  
             <form class= 'justify-content-center col-sm-9' action="?do=insert" method="POST">
             
@@ -168,7 +168,7 @@
                   if($count >0){ 
                           $passrow=$row['password'];?>
 
-                          <h1 class='text-center'>Edit User</h1>
+                          <h1 class='text-center'><i class="fa fa-users"></i> Edit User</h1>
                           <div class= 'container'>  
                             <form class= 'justify-content-center col-sm-9' action="?do=update" method="POST">
                             <input  type='hidden' value="<?php echo $row['userid']?>" name='userid' />
@@ -238,12 +238,12 @@
                     if(empty($user)){
                       $erorrarray[]=  "you can't set username empty";
                     }
-                    if(empty($full)){
-                      $erorrarray[]=  "you can't set fullname empty";
-                    }
-                    if(empty($email)){
-                      $erorrarray[]=  "you can't set Email empty";
-                    }
+                    // if(empty($full)){
+                    //   $erorrarray[]=  "you can't set fullname empty";
+                    // }
+                    // if(empty($email)){
+                    //   $erorrarray[]=  "you can't set Email empty";
+                    // }
                     
                     foreach($erorrarray as $eror){
                     
@@ -251,12 +251,22 @@
                     }
                   
                     if(empty($erorrarray)){
-                      $stmt = $con->prepare("UPDATE users SET username = ?, fullname = ?, email =?, password=? where userid= ?");
-                      $stmt->execute(array($user,$full,$email,$hashedpass,$id));
-                      $count= $stmt->rowCount();
                       
-                      $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">'.$count .' '. ' Record Succesfully Updated</div>';
-                      redirect($errmsg,'back');
+                        $stmt = $con->prepare("SELECT * FROM users WHERE username = ? AND userid != ? LIMIT 1");
+                        $stmt->execute(array($user,$id));
+                        $row = $stmt->fetch();
+                        $cheked= $stmt->rowCount();
+                        if($cheked == 0){
+                              $stmt = $con->prepare("UPDATE users SET username = ?, fullname = ?, email =?, password=? where userid= ?");
+                              $stmt->execute(array($user,$full,$email,$hashedpass,$id));
+                              $count= $stmt->rowCount();
+                              
+                              $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">'.$count .' '. ' Record Succesfully Updated</div>';
+                              redirect($errmsg,'member.php');
+                        }else{
+                          $errmsg= '<div class="alert alert-success col-md-6 container text-center d-flex align-items-center justify-content-center">This user is already exist</div>';
+                          redirect($errmsg, 'back',4);
+                        }
 
                     }
                     

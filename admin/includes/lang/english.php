@@ -12,7 +12,7 @@
             'Members'       =>'Members',
             'Statistics'    =>'Statistics',
             'Logs'          =>'Logs',
-            ''              =>'',
+            'partners'      =>'partners',
 
         );
         return $lang[$phrase];
