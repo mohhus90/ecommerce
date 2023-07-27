@@ -56,7 +56,7 @@
   
                 </table>
               </div>
-              <a href="partners.php?do=add" class='btn btn-primary'><i class="fa fa-plus icon" ></i> New Item</a>
+              <a href="partners.php?do=add" class='btn btn-primary'><i class="fa fa-plus" ></i> New Item</a>
             </div>
           <?php
         }elseif($do=='add'){?>
