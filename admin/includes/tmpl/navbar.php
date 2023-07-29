@@ -17,6 +17,9 @@
         <li class="nav-item">
           <a class="nav-link" href="partners.php"><?php echo lang('partners') ?></a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="store.php"><?php echo lang('store') ?></a>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right nav-ul">
         <li class="dropdown nav-drop">

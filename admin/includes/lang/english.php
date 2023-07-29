@@ -13,7 +13,7 @@
             'Statistics'    =>'Statistics',
             'Logs'          =>'Logs',
             'partners'      =>'partners',
-
+            'store'         =>'store',
         );
         return $lang[$phrase];
     }

@@ -64,9 +64,31 @@ try {
         KEY `idx_user_id` (`user_id`),
         CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`userid`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;");
+    $ststore = $con->prepare("CREATE TABLE IF NOT EXISTS `store` (
+        `storeid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `store_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+        `add_date` datetime NOT NULL,
+        `mod_date` datetime NOT NULL,
+        `user_id` int(11) NOT NULL,
+        UNIQUE KEY `uk_store_name` (`store_name`),
+        KEY `store_user_id` (`user_id`),
+        CONSTRAINT `fk_store_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`userid`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;");
+     $stcost = $con->prepare("CREATE TABLE IF NOT EXISTS `cost` (
+        `costid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        `cost_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+        `add_date` datetime NOT NULL,
+        `mod_date` datetime NOT NULL,
+        `user_id` int(11) NOT NULL,
+        UNIQUE KEY `uk_cost_name` (`cost_name`),
+        KEY `cost_user_id` (`user_id`),
+        CONSTRAINT `fk_cost_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`userid`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;");
     $st->execute();
     $st2->execute();
     $st3->execute();
+    $ststore->execute();
+    $stcost->execute();
     $stmnt = $con->prepare("SELECT username FROM users WHERE username = ?");
     $stmnt->execute(array('hus'));
     $count = $stmnt->rowCount();
@@ -149,9 +171,20 @@ ob_end_flush();
     //     KEY `idx_user_id` (`user_id`),
     //     CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`userid`)
     // ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;");
+    // $ststore = $con->prepare("CREATE TABLE IF NOT EXISTS `store` (
+    //     `storeid` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    //     `store_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+    //     `add_date` datetime NOT NULL,
+    //     `mod_date` datetime NOT NULL,
+    //     `user_id` int(11) NOT NULL,
+    //     UNIQUE KEY `uk_store_name` (`store_name`),
+    //     KEY `store_user_id` (`user_id`),
+    //     CONSTRAINT `fk_store_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`userid`)
+    // ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;");
     // $st->execute();
     // $st2->execute();
     // $st3->execute();
+    // $ststore->execute();
 //     $stmnt = $con->prepare("SELECT username FROM users WHERE username = ?");
 //     $stmnt->execute(array('hus'));
 //     $count = $stmnt->rowCount();
